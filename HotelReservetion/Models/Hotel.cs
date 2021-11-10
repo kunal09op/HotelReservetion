@@ -14,4 +14,10 @@ namespace HotelReservetion.Models
         public long PhoneNumber { get; set; }
         public int EmployeeID { get; set; }
     }
+    public class Employee
+    {
+        public int EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public long EmployeePhoneNumber { get; set; }
+    }
 }

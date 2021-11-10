@@ -10,6 +10,7 @@ using HotelReservetion.Models;
 namespace HotelReservetion.Controllers
 {
     [Route("api/[controller]")]
+    [Consumes("application/json")]
     [ApiController]
     public class HotelsController : ControllerBase
     {
@@ -26,20 +27,62 @@ namespace HotelReservetion.Controllers
             return await _context.Hotel.ToListAsync();
         }
 
-        // GET: Hotels/Details/5
-            [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> Details(int? id)
+        // GET: Hotels/301
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Hotel>> GetHotel(int id)
         {
+            var hotel = await _context.Hotel.FindAsync(id);
 
 
+
+            if (hotel == null)
+            {
+                return NotFound();
+            }
+
+
+
+            return hotel;
+        }
+        // POST: api/Hotels1
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        {
+            _context.Hotel.Add(hotel);
+            await _context.SaveChangesAsync();
+
+
+
+            return CreatedAtAction("GetHotel", new { id = hotel.HotelID }, hotel);
+        }
+
+        // DELETE: api/Hotels1/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteHotel(int id)
+        {
             var hotel = await _context.Hotel.FindAsync(id);
             if (hotel == null)
             {
                 return NotFound();
             }
 
-            return hotel;
+
+
+            _context.Hotel.Remove(hotel);
+            await _context.SaveChangesAsync();
+
+
+
+            return NoContent();
         }
+        // GET: Hotels/Employees
+        [HttpGet("Employees")]
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
+        {
+            return await _context.Employee.ToListAsync();
+        }
+
         /* public async Task<ActionResult<Hotel>> Details(int? id)
         {
            
