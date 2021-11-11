@@ -21,6 +21,9 @@ namespace HotelReservetion.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+          
+            
+            
             modelBuilder.Entity<Hotel>().ToTable("Hotel");
             modelBuilder.Entity<Employee>().ToTable("Employees");
             modelBuilder.Entity<Room>().ToTable("Room");

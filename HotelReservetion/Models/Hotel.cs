@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace HotelReservetion.Models
     }
     public class Room
     {
+        [Key]
         public int RoomNumber { get; set; }
         public string RoomType { get; set; }
         public int NumberOfBeds { get; set; }
@@ -44,18 +46,21 @@ namespace HotelReservetion.Models
         public int HotelID { get; set; }
         public int CustomerID { get; set; }
         public int RoomNumber { get; set; }
-        public String CheckInDate { get; set; }
-        public String CheckOutDate { get; set; }
+        public string CheckInDate { get; set; }
+        public string CheckOutDate { get; set; }
     }
     public class Ratings
     {
+        [Key]
         public int CustomerID { get; set; }
         public int Rating { get; set; }
-        public String Comment { get; set; }
+        public string Comment { get; set; }
        
     }
+    
     public class Billing
     {
+        [Key]
         public int BillNumber { get; set; }
         public int ReservationID { get; set; }
 

@@ -11,47 +11,47 @@ namespace HotelReservetion.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HotelsController : ControllerBase
+    public class EmployeesController : ControllerBase
     {
         private readonly HotelDbContext _context;
 
-        public HotelsController(HotelDbContext context)
+        public EmployeesController(HotelDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Hotels
+        // GET: api/Employees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotel()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
         {
-            return await _context.Hotel.ToListAsync();
+            return await _context.Employee.ToListAsync();
         }
 
-        // GET: api/Hotels/5
+        // GET: api/Employees/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
+            var employee = await _context.Employee.FindAsync(id);
 
-            if (hotel == null)
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return hotel;
+            return employee;
         }
 
-        // PUT: api/Hotels/5
+        // PUT: api/Employees/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotel(int id, Hotel hotel)
+        public async Task<IActionResult> PutEmployee(int id, Employee employee)
         {
-            if (id != hotel.HotelID)
+            if (id != employee.EmployeeID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(hotel).State = EntityState.Modified;
+            _context.Entry(employee).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace HotelReservetion.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!HotelExists(id))
+                if (!EmployeeExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace HotelReservetion.Controllers
             return NoContent();
         }
 
-        // POST: api/Hotels
+        // POST: api/Employees
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<Employee>> PostEmployee(Employee employee)
         {
-            _context.Hotel.Add(hotel);
+            _context.Employee.Add(employee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetHotel", new { id = hotel.HotelID }, hotel);
+            return CreatedAtAction("GetEmployee", new { id = employee.EmployeeID }, employee);
         }
 
-        // DELETE: api/Hotels/5
+        // DELETE: api/Employees/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHotel(int id)
+        public async Task<IActionResult> DeleteEmployee(int id)
         {
-            var hotel = await _context.Hotel.FindAsync(id);
-            if (hotel == null)
+            var employee = await _context.Employee.FindAsync(id);
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            _context.Hotel.Remove(hotel);
+            _context.Employee.Remove(employee);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool HotelExists(int id)
+        private bool EmployeeExists(int id)
         {
-            return _context.Hotel.Any(e => e.HotelID == id);
+            return _context.Employee.Any(e => e.EmployeeID == id);
         }
     }
 }
