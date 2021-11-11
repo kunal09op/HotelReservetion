@@ -10,6 +10,11 @@ namespace HotelReservetion.Models
     {
         public DbSet<Hotel> Hotel { get; set; }
         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Room> Room { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Reservation> Reservation { get; set; }
+        public DbSet<Ratings> Ratings { get; set; }
+        public DbSet<Billing> Billing { get; set; }
 
         public HotelDbContext(DbContextOptions<HotelDbContext> options) : base(options)
         {
@@ -18,6 +23,11 @@ namespace HotelReservetion.Models
         {
             modelBuilder.Entity<Hotel>().ToTable("Hotel");
             modelBuilder.Entity<Employee>().ToTable("Employees");
+            modelBuilder.Entity<Room>().ToTable("Room");
+            modelBuilder.Entity<Customer>().ToTable("Customer");
+            modelBuilder.Entity<Reservation>().ToTable("Reservation");
+            modelBuilder.Entity<Ratings>().ToTable("Ratings");
+            modelBuilder.Entity<Billing>().ToTable("Billing");
         }
 
 
