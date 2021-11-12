@@ -52,10 +52,12 @@ namespace HotelReservetion.Models
     public class Ratings
     {
         [Key]
+        public int RatingID { get; set; }
         public int CustomerID { get; set; }
         public int Rating { get; set; }
         public string Comment { get; set; }
        
+
     }
     
     public class Billing

@@ -46,7 +46,7 @@ namespace HotelReservetion.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRatings(int id, Ratings ratings)
         {
-            if (id != ratings.CustomerID)
+            if (id != ratings.RatingID)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace HotelReservetion.Controllers
             _context.Ratings.Add(ratings);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRatings", new { id = ratings.CustomerID }, ratings);
+            return CreatedAtAction("GetRatings", new { id = ratings.RatingID }, ratings);
         }
 
         // DELETE: api/Ratings/5
@@ -101,7 +101,7 @@ namespace HotelReservetion.Controllers
 
         private bool RatingsExists(int id)
         {
-            return _context.Ratings.Any(e => e.CustomerID == id);
+            return _context.Ratings.Any(e => e.RatingID == id);
         }
     }
 }
